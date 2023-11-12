@@ -13,6 +13,8 @@ FROM employer
 WHERE location = "St. Louis City";
 
 --Part 3
+-- write an SQL query to remove the job table
+DROP TABLE job;
 
 
 --Part 4

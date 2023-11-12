@@ -54,7 +54,7 @@ public class EmployerController {
         //employerId to find a specific employer object in the database
         Optional <Employer> optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
-            Employer employer = (Employer) optEmployer.get();
+            Employer employer = optEmployer.get();
             model.addAttribute("employer", employer);
             return "employers/view";
         } else {
