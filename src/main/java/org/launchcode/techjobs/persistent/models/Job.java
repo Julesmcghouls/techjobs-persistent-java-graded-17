@@ -8,7 +8,8 @@ import jakarta.persistence.Id;
 import java.util.List;
 
 @Entity
-public class Job {
+//Update the class definition of Job to extend AbstractEntity
+public class Job extends AbstractEntity {
 
     @Id
     @GeneratedValue

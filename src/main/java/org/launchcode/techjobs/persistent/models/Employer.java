@@ -1,8 +1,13 @@
 package org.launchcode.techjobs.persistent.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //Add @Entity annotation
 @Entity
@@ -11,6 +16,13 @@ public class Employer extends AbstractEntity {
     @NotNull
     @Size(min = 2, max = 100)
     private String location;
+
+    // use @OneToMany and @JoinColumn annotations on the job list to declare the relationship between data tables
+    @OneToMany
+    //Add name parameter to the @JoinColumn annotation
+    @JoinColumn(name = "employer_id")
+    //Add a private property "jobs" of type List<Job> and initialize it to an empty array list
+    private List<Job> jobs = new ArrayList<>();
 
     //Add no arg constructor for hibernate to create an object
     public Employer() {}
