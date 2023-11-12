@@ -20,6 +20,14 @@ public class EmployerController {
     //Add private field of EmployerRepository type called employerRepository
     private EmployerRepository employerRepository;
 
+    // Add an index method that responds at /employers
+    @GetMapping("/")
+    public String index(Model model) {
+        //pass employers to the "view" using model.addAttribute to display list of all employers using findAll()
+        model.addAttribute("employer", employerRepository.findAll());
+        //use template employer/index
+        return "employers/index";
+    }
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
@@ -34,13 +42,17 @@ public class EmployerController {
             return "employers/add";
         }
 
+        // add method to save valid employer object using newEmployer object
+        employerRepository.save(newEmployer);
         return "redirect:";
     }
 
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        Optional optEmployer = null;
+        //replace the null value in optEmployer using the findById method passing in
+        //employerId to find a specific employer object in the database
+        Optional <Employer> optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
