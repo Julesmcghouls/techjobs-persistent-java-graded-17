@@ -69,7 +69,7 @@ public class HomeController {
         // set the selected employer for the job
         newJob.setEmployer(employer);
         // set the selected skills for the job
-        newJob.setSkills(skillsjob);
+        newJob.setSkills(skillObjs);
 
         return "redirect:";
     }
